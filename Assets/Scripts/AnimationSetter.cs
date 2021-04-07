@@ -23,7 +23,7 @@ public class AnimationSetter : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(ÑonformSpeed());
+        StartCoroutine(ConformSpeed());
         StartCoroutine(ConformFlip());
     }
 
@@ -36,7 +36,7 @@ public class AnimationSetter : MonoBehaviour
         }
     }
 
-    private IEnumerator ÑonformSpeed()
+    private IEnumerator ConformSpeed()
     {
         while (_animator.GetBool("isDead") == false)
         {
