@@ -11,11 +11,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _movingAccuracy;
 
     private Mover _mover;
+    private Transform _target;
 
     public UnityEvent OnDie;
 
     public bool IsDead { get; private set; }
-    public Transform Target { get; set; }
 
     private void Awake()
     {
@@ -36,13 +36,18 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void Init(Transform target)
+    {
+        _target = target;
+    }
+
     private IEnumerator MoveToTarget()
     {
         float sqrMovingAccuracy = _movingAccuracy * _movingAccuracy;
         
-        while (Target != null && sqrMovingAccuracy <= (Target.position - transform.position).sqrMagnitude && IsDead == false)
+        while (_target != null && sqrMovingAccuracy <= (_target.position - transform.position).sqrMagnitude && IsDead == false)
         {
-            _mover.Move(Target.position.x > transform.position.x);
+            _mover.Move(_target.position.x > transform.position.x);
             yield return new WaitForFixedUpdate();
         }
 

@@ -10,6 +10,6 @@ public class SpawnPoint : MonoBehaviour
     public void Spawn()
     {
         Enemy enemy = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
-        enemy.Target = _target;
+        enemy.Init(_target);
     }
 }
